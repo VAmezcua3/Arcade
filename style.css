@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+}
+html{
+    background-image: url(cobra_kai__no_mercy__wallpaper_hd_by_angelus23_dd5ikxa-pre.jpg);
+    background-size: cover;
+}
+#title{
+    height: 200px;
+    width: 400px;
+}
+.board {
+     display: flex;
+     flex-wrap: wrap;
+     height: 420px;
+     width: 420px;
+     margin-top: 110px;
+ }
+.cell {
+      flex-basis: 140px;
+      display: flex;
+      border: 3px solid black;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+    }
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#replay {
+    background-color: rgb(17, 6, 122);
+    color: white;
+    padding: 20px;
+    font-size: 30px;
+    border: 2px solid white;
+}
+#replay:hover{
+    box-shadow: 0 2px 5px -2px black;
+}
