@@ -1,10 +1,10 @@
 //*************** STATE ***************//
 let state = {};
 state.players = ["", ""];
-state.currentPlayerIdx = Math.floor(Math.random() * 2)
+state.currentPlayerIdx = Math.floor(Math.random() * 2);
 
 const resetState = () => {
-    state.board = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
+    state.board = ["", "", "", "", "", "", "", "", "",];
     console.log('state', state);
 }
 
@@ -24,11 +24,8 @@ const renderBoard = () => {
         cellElem.className = "cell";
         console.log('cell', cellElem);
         cellElem.dataset.index = i;
-        /*let content = state.board[i].value;
-        let isTurned = state.board[i].isTurned;
-            if (isTurned) {
-                cellElem.innerText = content;
-        }*/
+        let content = state.board[i];
+        cellElem.innerText = content;
         boardElem.appendChild(cellElem)
     }
 }
@@ -52,9 +49,18 @@ const renderPlayers = () => {
 boardElem.addEventListener("click", function(event){
     console.log("event", event.target);
     let identifier = event.target.dataset.index;
-    state.board[identifier] = "";
     console.log("identifier", identifier)
-    changeTurn()
+    if (state.currentPlayerIdx = 0){
+        state.board[identifier] = "X"
+        changeTurn();
+        render();
+    } 
+    if (state.currentPlayerIdx = 1){
+        state.board[identifier] = "O"
+        changeTurn();
+        render();
+    }
+    changeTurn();
     render();
 })
 
@@ -72,13 +78,17 @@ playerTurnElem.addEventListener('click', function(event) {
     const getCurrentPlayer = () => {
         return state.players[state.currentPlayerIdx]
     }
+
     const changeTurn = () => {
         state.currentPlayerIdx = state.currentPlayerIdx === 0 ? 1 : 0;
+        console.log('current player', state.currentPlayerIdx)
     }
+    
     const render = () => {
         renderBoard()
         renderPlayers()
     }
+
 //*************** BOOT STRAPPING ***************//
 resetState()
 render()

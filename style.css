@@ -38,14 +38,13 @@ body {
     font-size: 100px;
     border: 2px solid black;
     position: absolute;
-    word-wrap: break-word;
     top: 34.5%;
     right: 39.5%;
     height: 330px;
     width: 330px;
 }
 .cobra_kai{
-    color: white;
+    color: yellow;
     position: absolute;
     left: 5%;
     top: 35%;
@@ -53,7 +52,7 @@ body {
     font-family: 'Lobster', cursive;
 }
 .miyagi_do{
-    color: white;
+    color:rgb(17, 6, 122);
     position: absolute;
     right: 2%;
     top: 35%;
@@ -70,7 +69,8 @@ body {
     text-align: center;
 }
 .player2{
-    background-color: powderblue;
+    background-color:rgb(17, 6, 122);
+    color: white;
     float: right;
     margin-right: -625px;
     margin-top: -250px;
@@ -79,7 +79,7 @@ body {
     text-align: center;
 }
 #replay {
-    background-color: rgb(17, 6, 122);
+    background-color:rgb(15, 94, 32);
     color: white;
     padding: 10px;
     font-size: 30px;
@@ -96,15 +96,67 @@ body {
 #replay:hover, .start:hover{
     box-shadow: 0 2px 5px 5px black;
 }
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 1300px){
     body {
         width: 100%;
         height: 100%;
+    }
+    .start {
+        width: 20%;
+        height: 25%;
+        right: 450px;
+        top: 300px;
+        margin: 0px;
+        font-size: 60px;
+    }
+    .cobra_kai{
+        width: 5px;
+        height: 5px;
+    }
+    .miyagi_do{
+        width: 5px;
+        height: 5px;
+        right: 25%;
+    }
+    .player1 {
+        top: 35%;
+        margin-left: -500px;
+        margin-top: 0;
+    }
+    .player2{
+        margin-right: -500px;
+        margin-top: 0;
     }
 }
 @media screen and (max-height: 700px){
     body {
         width: 100%;
         height: 100%;
+    }
+    .start {
+        width: 20%;
+        height: 25%;
+        right: 450px;
+        top: 300px;
+        margin: 0px;
+        font-size: 60px;
+    }
+    .cobra_kai{
+        width: 5px;
+        height: 5px;
+    }
+    .miyagi_do{
+        width: 5px;
+        height: 5px;
+        right: 25%;
+    }
+    .player1 {
+        top: 35%;
+        margin-left: -500px;
+        margin-top: 0;
+    }
+    .player2{
+        margin-right: -500px;
+        margin-top: 0;
     }
 }
