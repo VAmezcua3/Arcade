@@ -1,20 +1,21 @@
 //*************** STATE ***************//
 let state = {};
-state.players = ["", ""];
-state.currentPlayerIdx = Math.floor(Math.random() * 2);
 
 const resetState = () => {
     state.board = ["", "", "", "", "", "", "", "", "",];
     console.log('state', state);
 }
 
+state.players = ["", ""];
+state.currentPlayerIdx = 0
+
+
+
 //*************** DOM SELECTIONS ***************//
 const boardElem = document.getElementById("board")
 console.log("board", boardElem);
 
 const playerTurnElem = document.getElementById("turn")
-const replay = document.getElementById("replay");
-
 
 //*************** DOM FUNCTIONS ***************//
 const renderBoard = () => {
@@ -50,17 +51,7 @@ boardElem.addEventListener("click", function(event){
     console.log("event", event.target);
     let identifier = event.target.dataset.index;
     console.log("identifier", identifier)
-    if (state.currentPlayerIdx = 0){
-        state.board[identifier] = "X"
-        changeTurn();
-        render();
-    } 
-    if (state.currentPlayerIdx = 1){
-        state.board[identifier] = "O"
-        changeTurn();
-        render();
-    }
-    changeTurn();
+    takeTurn(identifier);
     render();
 })
 
@@ -84,11 +75,20 @@ playerTurnElem.addEventListener('click', function(event) {
         console.log('current player', state.currentPlayerIdx)
     }
     
+    const takeTurn = (identifier) => {
+        if (state.currentPlayerIdx === 0){
+            state.board[identifier] = "X"
+            changeTurn();
+        } else {
+            state.board[identifier] = "O"
+            changeTurn();
+        }
+    }
+
     const render = () => {
         renderBoard()
         renderPlayers()
     }
-
 //*************** BOOT STRAPPING ***************//
 resetState()
 render()
