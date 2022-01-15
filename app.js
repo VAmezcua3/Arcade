@@ -78,10 +78,16 @@ const changeTurn = () => {
 }
     
 const takeTurn = (identifier) => {
+    let snake = String.fromCodePoint(0x1F40D);
+    let karate = String.fromCodePoint(0x1F94B);
+
+    snake.className = "snake";
+    karate.className = "karate";
+
     if (state.currentPlayerIdx === 0){
-        state.board[identifier] = "X"
+        state.board[identifier] = snake;
     } else {
-        state.board[identifier] = "O"
+        state.board[identifier] = karate;
     }
     checkWinner();
     changeTurn();
@@ -109,7 +115,7 @@ const checkWinner = (position) => {
         let valueThree = state.board[c]
 
         if (valueOne && valueOne === valueTwo && valueTwo === valueThree) {
-            if (state.board[a] === "X" || state.board[b] === "X" || state.board[c] === "X"){
+            if (state.board[a] === String.fromCodePoint(0x1F40D) || state.board[b] === String.fromCodePoint(0x1F40D) || state.board[c] === String.fromCodePoint(0x1F40D)){
                 state.winner = state.players[0]
             } else {
                 state.winner = state.players[1]
