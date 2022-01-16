@@ -78,9 +78,6 @@ body {
     font-size: 20px;
     text-align: center;
 }
-.snake::after{
-    font-size: 60px;    
-}
 #replay {
     background-color:rgb(15, 94, 32);
     color: white;

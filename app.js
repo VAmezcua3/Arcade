@@ -12,10 +12,12 @@ state.currentPlayerIdx = Math.floor(Math.random() * 2)
 state.winner = null;
 
 //*************** DOM SELECTIONS ***************//
-const boardElem = document.getElementById("board")
+const boardElem = document.getElementById("board");
 console.log("board", boardElem);
 
-const playerTurnElem = document.getElementById("turn")
+const playerTurnElem = document.getElementById("turn");
+
+const replay = document.getElementById("replay");
 
 //*************** DOM FUNCTIONS ***************//
 const renderBoard = () => {
@@ -67,6 +69,13 @@ playerTurnElem.addEventListener('click', function(event) {
     }
 })
 
+replay.addEventListener("click", function(event){
+    state.players = ["", ""];
+    state.currentPlayerIdx = Math.floor(Math.random() * 2);
+    state.winner = null;
+    resetState();
+    render();
+})
 //*************** HELPER FUNCTIONS ***************//
 const getCurrentPlayer = () => {
     return state.players[state.currentPlayerIdx]
@@ -81,9 +90,8 @@ const takeTurn = (identifier) => {
     let snake = String.fromCodePoint(0x1F40D);
     let karate = String.fromCodePoint(0x1F94B);
 
-    snake.className = "snake";
-    karate.className = "karate";
-
+    if(state.board[identifier]) return;
+    
     if (state.currentPlayerIdx === 0){
         state.board[identifier] = snake;
     } else {
