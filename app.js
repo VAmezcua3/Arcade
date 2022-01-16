@@ -36,13 +36,19 @@ const renderBoard = () => {
 const renderPlayers = () => {
     let text;
 
-    if (!state.players[0] || !state.players[1]) {
+    if (!state.players[0] && !state.players[1]) {
         text = `
             <input class='player1' name='player1' placeholder='Enter Name'>  
             <input class='player2' name='player2' placeholder='Enter Name'>
             <div><button class="start">Start</button></div>
         `
-    } else if (state.winner){
+    }   else if (!state.players[0] && state.players[1]){
+        state.players[0] = "computer";
+        text = `It is ${getCurrentPlayer()}\'s turn!`
+    }   else if (state.players[0] && !state.players[1]){
+        state.players[1] = "computer";
+        text = `It is ${getCurrentPlayer()}\'s turn!`
+    }   else if (state.winner){
         text = `${state.winner} is the All Valley Champion!`
     }  else {
         text = `It is ${getCurrentPlayer()}\'s turn!`
