@@ -1,5 +1,6 @@
 //*************** STATE ***************//
 let state = {};
+let turnCount = 0
 
 const resetState = () => {
     state.board = ["", "", "", "", "", "", "", "", "",];
@@ -7,9 +8,8 @@ const resetState = () => {
 }
 
 state.players = ["", ""];
-state.currentPlayerIdx = Math.floor(Math.random() * 2)
-
 state.winner = null;
+state.currentPlayerIdx = Math.floor(Math.random() * 2)
 
 //*************** DOM SELECTIONS ***************//
 const boardElem = document.getElementById("board");
@@ -50,7 +50,10 @@ const renderPlayers = () => {
         text = `It is ${getCurrentPlayer()}\'s turn!`
     }   else if (state.winner){
         text = `${state.winner} is the All Valley Champion!`
-    }  else {
+    }   else if (turnCount === 9){
+        text = `TIE`
+    }
+      else {
         text = `It is ${getCurrentPlayer()}\'s turn!`
     }
     playerTurnElem.innerHTML = text;
@@ -79,6 +82,7 @@ replay.addEventListener("click", function(event){
     state.players = ["", ""];
     state.currentPlayerIdx = Math.floor(Math.random() * 2);
     state.winner = null;
+    turnCount = 0;
     resetState();
     render();
 })
@@ -105,6 +109,7 @@ const takeTurn = (identifier) => {
     }
     checkWinner();
     changeTurn();
+    turnCount++
 }
 
 const checkWinner = (position) => {
