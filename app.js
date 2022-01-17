@@ -4,7 +4,6 @@ let turnCount = 0
 
 const resetState = () => {
     state.board = ["", "", "", "", "", "", "", "", "",];
-    console.log('state', state);
 }
 
 state.players = ["", ""];
@@ -13,7 +12,6 @@ state.currentPlayerIdx = Math.floor(Math.random() * 2)
 
 //*************** DOM SELECTIONS ***************//
 const boardElem = document.getElementById("board");
-console.log("board", boardElem);
 
 const playerTurnElem = document.getElementById("turn");
 
@@ -25,7 +23,6 @@ const renderBoard = () => {
     for (let i = 0; i < state.board.length; i++){
         const cellElem = document.createElement("div");
         cellElem.className = "cell";
-        console.log('cell', cellElem);
         cellElem.dataset.index = i;
         let content = state.board[i];
         cellElem.innerText = content;
@@ -61,9 +58,7 @@ const renderPlayers = () => {
 
 //*************** EVENT LISTENERS ***************//
 boardElem.addEventListener("click", function(event){
-    console.log("event", event.target);
     let identifier = event.target.dataset.index;
-    console.log("identifier", identifier)
     takeTurn(identifier);
     render();
 })
@@ -93,7 +88,6 @@ const getCurrentPlayer = () => {
 
 const changeTurn = () => {
     state.currentPlayerIdx = state.currentPlayerIdx === 0 ? 1 : 0;
-    console.log('current player', state.currentPlayerIdx)
 }
     
 const takeTurn = (identifier) => {
@@ -107,10 +101,26 @@ const takeTurn = (identifier) => {
     } else {
         state.board[identifier] = karate;
     }
+
+    /*if (state.players[0] === "computer" || state.players[1] = "computer"){
+        //this if statement would recognize when computer player is present & run helper function below
+        computerTurn()
+    }*/
+
     checkWinner();
     changeTurn();
     turnCount++
 }
+
+/*const computerTurn = () => {
+    //computer chooses which cell through choice
+
+let choice = Math.floor(Math.random() * 9);
+
+    //computer then needs to use choice to find the respective cell on the board
+    //computer needs a way to apply choice to the board. would this be done in takeTurn?
+}*/
+
 
 const checkWinner = (position) => {
     const solutions = [
@@ -129,27 +139,26 @@ const checkWinner = (position) => {
         let b = solution[1]; 
         let c = solution[2]; 
 
-        let valueOne = state.board[a] 
-        let valueTwo = state.board[b] 
-        let valueThree = state.board[c]
+        let valueOne = state.board[a];
+        let valueTwo = state.board[b];
+        let valueThree = state.board[c];
 
         if (valueOne && valueOne === valueTwo && valueTwo === valueThree) {
             if (state.board[a] === String.fromCodePoint(0x1F40D) || state.board[b] === String.fromCodePoint(0x1F40D) || state.board[c] === String.fromCodePoint(0x1F40D)){
-                state.winner = state.players[0]
+                state.winner = state.players[0];
             } else {
-                state.winner = state.players[1]
+                state.winner = state.players[1];
             }
-            console.log(state.winner);
-            return
+            return;
         }
     }
 }
 
 const render = () => {
-    renderBoard()
-    renderPlayers()
+    renderBoard();
+    renderPlayers();
 }
 
 //*************** BOOT STRAPPING ***************//
-resetState()
-render()
+resetState();
+render();
